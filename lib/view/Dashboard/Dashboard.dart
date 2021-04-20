@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:localserviceapp/controller/DashboardController/DashboardController.dart';
+import 'package:localserviceapp/view/ServicesList/ServicesList.dart';
 
 class DashBoard extends StatelessWidget {
   @override
@@ -59,14 +60,15 @@ class DashBoard extends StatelessWidget {
                             height: 200.h,
                             child: CarouselSlider(
                               options: CarouselOptions(
-                                  height: 180.h, enlargeCenterPage: true),
+                                  autoPlay: true,
+                                  height: 180.h,
+                                  enlargeCenterPage: true),
                               items: _dashBoardController.listOfBanner.map((i) {
                                 return Builder(
                                   builder: (BuildContext context) {
                                     return Container(
                                       width: MediaQuery.of(context).size.width,
                                       decoration: BoxDecoration(
-                                          color: Colors.lightBlueAccent,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Image.asset(i, fit: BoxFit.cover),
@@ -110,31 +112,41 @@ class DashBoard extends StatelessWidget {
                     child: new StaggeredGridView.countBuilder(
                       crossAxisCount: 4,
                       itemCount: _dashBoardController.listOfServices.length,
-                      itemBuilder: (BuildContext context, int index) =>
-                          new Container(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color(_dashBoardController
-                                      .listOfServices[index]["color"][0]),
-                                  Color(_dashBoardController
-                                      .listOfServices[index]["color"][1])
-                                ]),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              _dashBoardController.listOfServices[index]
-                                  ["title"],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 25.sp,
-                                  color: Colors.white),
-                              textAlign: TextAlign.center,
+                      itemBuilder: (BuildContext context, int index) => InkWell(
+                        onTap: () {
+                          print(_dashBoardController.listOfServices[index]
+                              ["listName"]);
+                          Get.to(ServicesList(
+                              serviceList: _dashBoardController
+                                  .listOfServices[index]["listName"],
+                              serviceName: _dashBoardController
+                                  .listOfServices[index]["title"]));
+                        },
+                        child: new Container(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Color(_dashBoardController
+                                        .listOfServices[index]["color"][0]),
+                                    Color(_dashBoardController
+                                        .listOfServices[index]["color"][1])
+                                  ]),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                _dashBoardController.listOfServices[index]
+                                    ["title"],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 25.sp,
+                                    color: Colors.white),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                         ),

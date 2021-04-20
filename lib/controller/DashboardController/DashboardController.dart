@@ -8,11 +8,13 @@ class DashboardController extends GetxController {
   List<Map<String, dynamic>> listOfServices = [
     {
       "title": "Laptop & PC Repairing",
-      "color": [0xffED4264, 0xffFFEDBC]
+      "color": [0xffED4264, 0xffFFEDBC],
+      "listName": "laptop_services"
     },
     {
       "title": "Garden Cleaning",
-      "color": [0xffDC2424, 0xff4A569D]
+      "color": [0xffDC2424, 0xff4A569D],
+      "listName": "garden_cleaning"
     },
     {
       "title": "Plumbing",
