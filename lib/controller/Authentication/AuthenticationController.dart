@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:localserviceapp/view/Dashboard/Dashboard.dart';
+import 'package:localserviceapp/view/NavigatorScreen/NavigatorScreen.dart';
 
 class AuthenticationController extends GetxController {
   final _emailController = TextEditingController();
@@ -19,7 +20,7 @@ class AuthenticationController extends GetxController {
       _emailController.clear();
       _passwordController.clear();
       _confirmPasswordController.clear();
-      Get.to(DashBoard());
+      Get.to(NavigatorScreen());
     }
   }
 
@@ -27,7 +28,7 @@ class AuthenticationController extends GetxController {
     if (_loginFormKey.currentState.validate()) {
       _emailController.clear();
       _passwordController.clear();
-      Get.to(DashBoard());
+      Get.to(NavigatorScreen());
     }
   }
 }
