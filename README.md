@@ -1,6 +1,6 @@
-# localserviceapp
+# LocalServiceApp
 
-A new Flutter project.
+-Book local services from this app easily or be a local service professional
 
 ## Getting Started
 
